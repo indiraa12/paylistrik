@@ -27,7 +27,7 @@ class PagePelangganController extends Controller
             ->where("role_id", 2)
                 ->latest()
                 ->get();
-            return $data_pelanggan;
+            // return $data_pelanggan;
         }
         return view("admin.pelanggan.index", compact("data_pelanggan"));
     }

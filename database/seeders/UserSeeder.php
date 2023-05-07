@@ -25,15 +25,7 @@ class UserSeeder extends Seeder
                 "alamat" => "-",
                 "remember_token" => Str::random(10),
                 "role_id" => 1,
-            ],
-            [
-                "name" => "Indi Rahmadani",
-                "username" => "indi",
-                "password" => bcrypt("password"),
-                "nomor_kwh" => "234567890123",
-                "alamat" => "Jl. Jalan",
-                "remember_token" => Str::random(10),
-                "role_id" => 2,
+                // 'tarif_id' => 2,
             ],
         ];
 

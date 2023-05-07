@@ -49,8 +49,8 @@
                             <th>Username</th>
                             <th>Nama Pelanggan</th>
                             <th>No. Listrik</th>
-                            {{-- <th>No. Listrik</th> --}}
                             <th>Alamat</th>
+                            <th>Tarif</th>
                             {{-- <th>Kode Tarif</th> --}}
                             @if (Auth::user()->role_id == 1)
                                 <th>Aksi</th>
@@ -65,6 +65,12 @@
                             <td>{{ $item['name'] }}</td>
                             <td>{{ $item['nomor_kwh'] }}</td>
                             <td>{{ $item['alamat'] }}</td>
+                            <td>
+                                <ol>
+                                    <li>Daya : {{ $item->tarif->daya }}</li>
+                                    <li>Tarif : {{ $item->tarif->tarif_kwh }}</li>
+                                </ol>
+                            </td>
                             {{-- <td>{{ $item['id_tarif'] }}</td> --}}
                             @if (Auth::user()->role_id == 1)
                                 <td>
