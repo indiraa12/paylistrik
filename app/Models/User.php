@@ -23,6 +23,7 @@ class User extends Authenticatable
         "username",
         "alamat",
         "nomor_kwh",
+        "tarif_id",
     ];
 
     /**
@@ -40,4 +41,9 @@ class User extends Authenticatable
     protected $casts = [
         "email_verified_at" => "datetime",
     ];
+
+    public function tarif()
+    {
+        return $this->belongsTo(Tarif::class);
+    }
 }

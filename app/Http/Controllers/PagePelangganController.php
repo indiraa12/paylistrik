@@ -17,15 +17,17 @@ class PagePelangganController extends Controller
     public function index(Request $request)
     {
         if ($request->cari) {
-            $data_pelanggan = User::where("role_id", 2)
+            $data_pelanggan = User::with('tarif')
+            ->where("role_id", 2)
                 ->where("username", "LIKE", "%" . $request->cari . "%")
                 ->latest()
                 ->get();
         } else {
-            $data_pelanggan = User::where("role_id", 2)
+            $data_pelanggan = User::with('tarif')
+            ->where("role_id", 2)
                 ->latest()
                 ->get();
-            // return $data_pelanggan;
+            return $data_pelanggan;
         }
         return view("admin.pelanggan.index", compact("data_pelanggan"));
     }

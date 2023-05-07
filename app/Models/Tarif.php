@@ -13,4 +13,9 @@ class Tarif extends Model
     protected $fillable = [
         'daya', 'tarif_kwh'
     ];
+
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
 }

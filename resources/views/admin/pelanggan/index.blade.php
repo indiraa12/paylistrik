@@ -49,6 +49,7 @@
                             <th>Username</th>
                             <th>Nama Pelanggan</th>
                             <th>No. Listrik</th>
+                            {{-- <th>No. Listrik</th> --}}
                             <th>Alamat</th>
                             {{-- <th>Kode Tarif</th> --}}
                             @if (Auth::user()->role_id == 1)

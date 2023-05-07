@@ -34,11 +34,13 @@ class RegisterController extends Controller
             "nomor_kwh" => "required",
             "name" => "required",
             "alamat" => "required",
+            "tarif_id" => "required|exists:tarif,id",
             // "id_tarif" => "required",
         ]);
 
         $validateData["password"] = bcrypt($validateData["password"]);
-
+        $validateData['tarif_id'] = $request->tarif_id;
+        // return $validateData;
         User::create($validateData);
 
         return redirect("/login")->with(
