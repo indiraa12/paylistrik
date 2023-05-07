@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pelanggan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Tarif;
 use App\Models\User;
 
 class PagePelangganController extends Controller
@@ -94,8 +95,9 @@ class PagePelangganController extends Controller
 
     public function edit(User $pelanggan)
     {
-        // return $pelanggan;
-        return view("admin.pelanggan.edit", compact("pelanggan"));
+        $tarif = Tarif::all();
+        // return $tarif;
+        return view("admin.pelanggan.edit", compact("pelanggan", "tarif"));
     }
 
     /**
@@ -119,9 +121,10 @@ class PagePelangganController extends Controller
             "nomor_kwh" => "required",
             "name" => "required",
             "alamat" => "required",
-            // "id_tarif" => "required",
+            "tarif_id" => "required",
         ]);
         $data = $request->all();
+        $data["tarif_id"] = $request->tarif_id;
         if ($request->password) {
             $data["password"] = bcrypt($data["password"]);
         } else {
