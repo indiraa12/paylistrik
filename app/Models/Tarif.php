@@ -12,6 +12,6 @@ class Tarif extends Model
     protected $primaryKey = "id_tarif";
 
     protected $fillable = [
-        'daya', 'tarifperkwh'
+        'daya', 'tarif_kwh'
     ];
 }
