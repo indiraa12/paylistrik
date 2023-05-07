@@ -60,7 +60,7 @@ class TarifController extends Controller
      */
     public function edit(Tarif $tarif)
     {
-        //
+        return view("admin.tarif.edit", compact("tarif"));
     }
 
     /**
@@ -83,6 +83,10 @@ class TarifController extends Controller
      */
     public function destroy(Tarif $tarif)
     {
-        //
+        $tarif->delete();
+        return redirect("/admin/tarif")->with(
+            "hapus",
+            "Hapus Data Sukses!!!"
+        );
     }
 }

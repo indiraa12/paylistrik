@@ -57,12 +57,12 @@
                 <td>{{ $item['daya'] }}</td>
                 <td>{{ $item['tarifperkwh'] }}</td>
                 <td>
-                 <a href="/admin/pelanggan/edit/{{ $item->id_pelanggan }}" class="badge bg-warning"><i class="menu-icon tf-icons bx bxs-edit"></i></a>
-                  <form action="/admin/pelanggan/{{ $item->id_pelanggan }}" method="POST" class="d-inline">
-                    @method('delete')
-                    @csrf
-                    <button type="submit" class="badge bg-danger border-0"><i class="menu-icon tf-icons bx bxs-trash"></i></button>
-                  </form>
+                 <a href="{{ route('tarif.edit', $item->daya) }}" class="badge bg-warning"><i class="menu-icon tf-icons bx bxs-edit"></i></a>
+                 <form action="/admin/tarif/{{ $item->daya }}" onsubmit="return confirm('apakah anda yakin?')" method="POST" class="d-inline">
+                  @method('delete')
+                  @csrf
+                  <button type="submit" class="badge bg-danger border-0"><i class=" bx bx-trash"></i></button>
+                </form>
                 </td>
               </tr>
               @endforeach
