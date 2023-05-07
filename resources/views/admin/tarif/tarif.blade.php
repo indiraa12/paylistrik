@@ -1,7 +1,6 @@
 @extends('dashboard/layouts/main')
 @section('konten')
     <!-- Bordered Table -->
-
     <div class="card ">
         <h5 class="card-header">Daftar Tarif</h5>
         <div class="card-body">
