@@ -9,7 +9,6 @@ class Tarif extends Model
 {
     use HasFactory;
     protected $table = 'tarif';
-    protected $primaryKey = "id_tarif";
 
     protected $fillable = [
         'daya', 'tarif_kwh'

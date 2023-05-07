@@ -126,11 +126,10 @@
                             <div class="mb-3">
                                 <label class="col-sm-2 col-form-label" for="tarif_id">Tarif</label>
                                 <select name="tarif_id" class="form-control" required>
-                                    <option value="">coba</option>
-                                    <option value="">coba lgi</option>
-                                    {{-- @foreach ($users as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                        @endforeach --}}
+                                    <option value="" disabled selected>Pilih Tarif</option>
+                                    @foreach ($tarif as $item)
+                                        <option value="{{ $item->id }}">{{ $item->daya }}</option>
+                                    @endforeach
                                 </select>
                             </div>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pelanggan;
+use App\Models\Tarif;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -10,8 +11,11 @@ class RegisterController extends Controller
 {
     public function register()
     {
+        $tarif = Tarif::all();
+        // return $tarif;
         return view("register.register", [
             "title" => "Register",
+            "tarif" => $tarif,
         ]);
     }
 
