@@ -1,7 +1,6 @@
 @extends('dashboard/layouts/main')
 @section('konten')
     <!-- Bordered Table -->
-
     <div class="card ">
         <h5 class="card-header">Daftar Tarif</h5>
         <div class="card-body">
@@ -74,45 +73,7 @@
             </div>
         </div>
     </div>
-    <!--/ Bordered Table -->
 
-<<<<<<< HEAD
-          <div class="table-responsive text-nowrap">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  {{-- <th>ID Tarif</th> --}}
-                  <th>Daya</th>
-                  <th>Tarif perkwh</th>
-                  <th>Opsi</th>
-                </tr>
-              </thead>
-
-              @foreach ($data_tarif as $item)
-              <tr>
-                {{-- <td>{{ $item['id_tarif'] }}</td> --}}
-                <td>{{ $item['daya'] }}</td>
-                <td>{{ $item['tarifperkwh'] }}</td>
-                <td>
-                 <a href="{{ route('tarif.edit', $item->daya) }}" class="badge bg-warning"><i class="menu-icon tf-icons bx bxs-edit"></i></a>
-                 <form action="/admin/tarif/{{ $item->daya }}" onsubmit="return confirm('apakah anda yakin?')" method="POST" class="d-inline">
-                  @method('delete')
-                  @csrf
-                  <button type="submit" class="badge bg-danger border-0"><i class=" bx bx-trash"></i></button>
-                </form>
-                </td>
-              </tr>
-              @endforeach
-
-            </table>
-          </div>
-        </div>
-      </div>
-      <!--/ Bordered Table -->
- 
-  <!-- / Content -->
 @endsection
-=======
-    <!-- / Content -->
-@endsection
->>>>>>> cd3d4be1df185ee6b96fc4eb70472cf6231a7703
+
+
