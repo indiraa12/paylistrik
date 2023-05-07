@@ -2,7 +2,7 @@
 @section('konten')
     <!-- Content -->
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h1>WELCOME BACK,
+        <h1>Selamat Datang Kembali,
             @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
                 {{ auth()->user()->name }}
             @else
