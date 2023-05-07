@@ -9,9 +9,13 @@ class Tarif extends Model
 {
     use HasFactory;
     protected $table = 'tarif';
-    protected $primaryKey = "id_tarif";
 
     protected $fillable = [
-        'daya', 'tarifperkwh'
+        'daya', 'tarif_kwh'
     ];
+
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
 }

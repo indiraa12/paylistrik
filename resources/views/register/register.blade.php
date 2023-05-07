@@ -122,17 +122,16 @@
                                     </div>
                                 @enderror
                             </div>
-                            
-                            {{-- <div class="row mb-3">
+
+                            <div class="mb-3">
                                 <label class="col-sm-2 col-form-label" for="tarif_id">Tarif</label>
-                                  <div class="col-sm-10">
-                                <select name="tarif_id"  class="form-control" required >
-                                    @foreach ($users as $item)
-                                      <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                <select name="tarif_id" class="form-control" required>
+                                    <option value="" disabled selected>Pilih Tarif</option>
+                                    @foreach ($tarif as $item)
+                                        <option value="{{ $item->id }}">{{ $item->daya }}</option>
                                     @endforeach
                                 </select>
-                              </div>
-                            </div> --}}
+                            </div>
 
                             <div class="mb-3">
                                 <div class="form-check">

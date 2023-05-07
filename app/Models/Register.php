@@ -9,10 +9,6 @@ class Register extends Model
 {
     use HasFactory;
     protected $table = 'pelanggan';
-    protected $filable = ['id_pelanggan', 'username', 'password', 'nomor_kwh', 'nama_pelanggan', 'alamat', 'id_tarif'];
+    protected $filable = ['tarif_id', 'username', 'password', 'nomor_kwh', 'nama_pelanggan', 'alamat',];
 
-    public function tarif()
-    {
-        return $this->belongsTo(Tarif::class, 'id_tarif');
-    }
 }

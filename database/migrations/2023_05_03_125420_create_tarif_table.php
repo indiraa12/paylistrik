@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tarif', function (Blueprint $table) {
-            $table->bigIncrements('id_tarif');
+            $table->id();
             $table->string('daya');
-            $table->integer('tarifperkwh');
+            $table->integer('tarif_kwh');
             $table->timestamps();
         });
     }

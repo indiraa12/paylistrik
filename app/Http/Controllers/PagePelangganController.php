@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pelanggan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Tarif;
 use App\Models\User;
 
 class PagePelangganController extends Controller
@@ -17,12 +18,14 @@ class PagePelangganController extends Controller
     public function index(Request $request)
     {
         if ($request->cari) {
-            $data_pelanggan = User::where("role_id", 2)
+            $data_pelanggan = User::with('tarif')
+            ->where("role_id", 2)
                 ->where("username", "LIKE", "%" . $request->cari . "%")
                 ->latest()
                 ->get();
         } else {
-            $data_pelanggan = User::where("role_id", 2)
+            $data_pelanggan = User::with('tarif')
+            ->where("role_id", 2)
                 ->latest()
                 ->get();
             // return $data_pelanggan;
@@ -37,7 +40,8 @@ class PagePelangganController extends Controller
      */
     public function create()
     {
-        return view("admin.pelanggan.create");
+        $tarif = Tarif::all();
+        return view("admin.pelanggan.create", compact("tarif"));
     }
 
     /**
@@ -61,9 +65,10 @@ class PagePelangganController extends Controller
             "nomor_kwh" => "required",
             "name" => "required",
             "alamat" => "required",
-            // "id_tarif" => "required",
+            "tarif_id" => "required",
         ]);
         $pelanggan = $request->all();
+        $pelanggan["tarif_id"] = $request->tarif_id;
         $pelanggan["password"] = bcrypt($pelanggan["password"]);
         User::create($pelanggan);
         return redirect("/admin/pelanggan")->with(
@@ -92,8 +97,9 @@ class PagePelangganController extends Controller
 
     public function edit(User $pelanggan)
     {
-        // return $pelanggan;
-        return view("admin.pelanggan.edit", compact("pelanggan"));
+        $tarif = Tarif::all();
+        // return $tarif;
+        return view("admin.pelanggan.edit", compact("pelanggan", "tarif"));
     }
 
     /**
@@ -117,9 +123,10 @@ class PagePelangganController extends Controller
             "nomor_kwh" => "required",
             "name" => "required",
             "alamat" => "required",
-            // "id_tarif" => "required",
+            "tarif_id" => "required",
         ]);
         $data = $request->all();
+        $data["tarif_id"] = $request->tarif_id;
         if ($request->password) {
             $data["password"] = bcrypt($data["password"]);
         } else {
