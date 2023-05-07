@@ -48,17 +48,17 @@
                     </div>
                 </div>
 
-                {{-- <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="alamat">Kode Tarif</label>
-                    <div class="col-sm-10">
-                        <select name="id_tarif" class="form-control">
-                            <option>-- Pilih Kode Tarif --</option>
-                            <option>R-01/900VA</option>
-                            <option>R-02/500VA</option>
-                            <option>R-03/250VA</option>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="tarif_id">Tarif</label>
+                    <div class='col-sm-10'>
+                        <select name="tarif_id" class="form-control" required>
+                            <option value="" disabled selected>Pilih Tarif</option>
+                            @foreach ($tarif as $item)
+                                <option value="{{ $item->id }}">{{ $item->daya }}</option>
+                            @endforeach
                         </select>
                     </div>
-                </div> --}}
+                </div>
 
                 <div class="row justify-content-end">
                     <div class="col-sm-10">

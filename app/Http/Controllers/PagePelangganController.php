@@ -40,7 +40,8 @@ class PagePelangganController extends Controller
      */
     public function create()
     {
-        return view("admin.pelanggan.create");
+        $tarif = Tarif::all();
+        return view("admin.pelanggan.create", compact("tarif"));
     }
 
     /**
@@ -64,9 +65,10 @@ class PagePelangganController extends Controller
             "nomor_kwh" => "required",
             "name" => "required",
             "alamat" => "required",
-            // "id_tarif" => "required",
+            "tarif_id" => "required",
         ]);
         $pelanggan = $request->all();
+        $pelanggan["tarif_id"] = $request->tarif_id;
         $pelanggan["password"] = bcrypt($pelanggan["password"]);
         User::create($pelanggan);
         return redirect("/admin/pelanggan")->with(
