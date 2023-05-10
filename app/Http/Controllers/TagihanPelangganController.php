@@ -14,8 +14,8 @@ class TagihanPelangganController extends Controller
      */
     public function index()
     {
-
-        return view('halaman/tagihan/tagih');
+        $tagihan = TagihanPelanggan::all();
+        return view('halaman/tagihan/tagih', compact('tagihan'));
     }
 
     /**

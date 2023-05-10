@@ -30,35 +30,26 @@
             <table class="table table-bordered">
               <thead>
                 <tr>
-                  <th>ID Tagihan</th>
                   <th>ID Penggunaan</th>
                   <th>ID Pelanggan</th>
                   <th>Bulan</th>
                   <th>Tahun</th>
                   <th>Jumlah Meter</th>
                   <th>Status</th>
-                  <th>Opsi</th>
                 </tr>
               </thead>
 
-              {{-- @foreach ($tagih as $item)
+              @foreach ($tagihan as $item)
               <tr>
-                <td>{{ $item['id_tagihan'] }}</td>
-                <td>{{ $item['id_penggunaan'] }}</td>
-                <td>{{ $item['id_pelanggan'] }}</td>
+                <td>{{ $item['penggunaan_id'] }}</td>
+                <td>{{ $item['user_id'] }}</td>
                 <td>{{ $item['bulan'] }}</td>
                 <td>{{ $item['tahun'] }}</td>
                 <td>{{ $item['jumlah_meter'] }}</td>
-                <td>{{ $item['status'] }}</td>
-                <td>
-                 <form action="/admin/tagihan-admin/{{ $item->id_tagihan }}" method="POST" class="d-inline">
-                    @method('delete')
-                    @csrf
-                    <button type="submit" class="badge bg-danger border-0"><i class="menu-icon tf-icons bx bxs-trash"></i></button>
-                  </form>
-                </td>
+                <td><a href="{{ route('penggunaan.edit', $item->id) }}" class="badge bg-warning">Bayar</a></td>
+                
               </tr>
-              @endforeach --}}
+              @endforeach
 
             </table>
           </div>

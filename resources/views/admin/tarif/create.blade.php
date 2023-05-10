@@ -15,7 +15,7 @@
         <div class="row mb-3">
           <label class="col-sm-2 col-form-label" for="nama">Tarif Perkwh</label>
             <div class="col-sm-10">
-              <input type="text" name="tarifperkwh"  id="nama" class="form-control phone-mask" placeholder="Masukkan Nama Lengkap"  aria-describedby="nama" />
+              <input type="text" name="tarif_kwh"  id="nama" class="form-control phone-mask" placeholder="Masukkan Nama Lengkap"  aria-describedby="nama" />
             </div>
         </div>
   

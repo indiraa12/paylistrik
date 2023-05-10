@@ -29,9 +29,8 @@
                       </table>
                       
                       <div class="mb-3"></div>
-                      <button type="submit" class="btn btn-primary">Kirim Tagihan</button>
-       
-      </div>
+                         <button type="submit" class="btn btn-primary">Kirim Tagihan</button>
+                     </div>
       <!--/ Bordered Table -->
   
         </div>

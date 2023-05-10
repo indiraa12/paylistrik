@@ -9,18 +9,17 @@ class TagihanPelanggan extends Model
 {
     use HasFactory;
     protected $table = 'tagihan';
-    protected $primaryKey = "id_tagihan";
 
     protected $fillable = [
-        'id_tagihan', 'id_penggunaan', 'id_pelanggan', 'bulan', 'tahun', 'jumlah_meter', 'status'
+        'id_penggunaan', 'id_pelanggan', 'bulan', 'tahun', 'jumlah_meter', 'status'
     ];
 
-    // public function penggunaan()
-    // {
-    //     return $this->belongsTo(Penggunaan::class, 'id_penggunaan');
-    // }
-    // public function pelanggan()
-    // {
-    //     return $this->belongsTo(Pelanggan::class, 'id_pelanggan');
-    // }
+    public function penggunaan()
+    {
+        return $this->belongsTo(Penggunaan::class, 'id_penggunaan');
+    }
+    public function pelanggan()
+    {
+        return $this->belongsTo(Pelanggan::class, 'id_pelanggan');
+    }
 }

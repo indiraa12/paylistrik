@@ -4,7 +4,7 @@
      <div class="card">
       <h5 class="card-header">Rincian Pembayaran</h5>
       <div class="card-body">
-          <a href="{{ route('pembayaran.create') }}" class="btn btn-primary" >Tambah Pembayaran</a>
+          
     <div class="mb-3"></div>
 										<table class="table table-striped table-hover">
 											<tr>
@@ -33,8 +33,10 @@
 												<td align="left"></td>
 											</tr>
 										</table>
-      </div>
-    </div>
+										<div class="mb-3"></div>
+										<a href="{{ route('pembayaran.create') }}" class="btn btn-primary" >Bayar Sekarang</a>
+                     </div>
+      					</div>
     <!--/ Bordered Table -->
 
       </div>

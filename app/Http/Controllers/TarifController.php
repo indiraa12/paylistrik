@@ -60,7 +60,7 @@ class TarifController extends Controller
      */
     public function edit(Tarif $tarif)
     {
-        return view("admin.tarif.edit", compact("tarif"));
+        return view('admin.tarif.edit', compact('tarif'));
     }
 
     /**
@@ -72,7 +72,10 @@ class TarifController extends Controller
      */
     public function update(Request $request, Tarif $tarif)
     {
-        //
+        $data_tarif = $request->all();
+        $data_tarif['id'] = $request->id;
+        $tarif->update($data_tarif);
+        return redirect('/admin/tarif')->with('berhasil', 'Edit Data Sukses!!!');
     }
 
     /**
