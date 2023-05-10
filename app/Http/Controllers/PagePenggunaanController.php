@@ -19,7 +19,7 @@ class PagePenggunaanController extends Controller
      */
     public function index()
     {
-        $data_penggunaan = Penggunaan::with('User')->get();
+        $data_penggunaan = Penggunaan::with('User')->latest()->get();
         return view('admin.penggunaan.usage', compact('data_penggunaan'));
     }
 

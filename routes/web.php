@@ -10,6 +10,7 @@ use App\Http\Controllers\PagePelangganController;
 use App\Http\Controllers\PagePenggunaanController;
 use App\Http\Controllers\TagihanPelangganController;
 use App\Http\Controllers\TarifController;
+use App\Models\TagihanPelanggan;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,5 +67,12 @@ Route::middleware(["auth"])->group(function () {
     //pembayaran pelanggan
     Route::resource("/halaman/pembayaran", PembayaranController::class);
     //tagihan pelanggan
-    Route::resource("/halaman/tagihan", TagihanPelangganController::class);
+    Route::resource("/admin/tagihan", TagihanPelangganController::class);
+
+    Route::get('/halaman/tagihan', function () {
+        $tagihan = TagihanPelanggan::with('penggunaan','user')
+        ->where('user_id', auth()->user()->id)
+        ->get();
+        return view('halaman/tagihan/tagih', compact('tagihan'));
+    });
 });

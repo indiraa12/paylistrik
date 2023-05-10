@@ -16,11 +16,12 @@ class TagihanPelanggan extends Model
 
     public function penggunaan()
     {
-        return $this->belongsTo(Penggunaan::class, 'id_penggunaan');
+        return $this->belongsTo(Penggunaan::class, 'penggunaan_id');
     }
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
 
 }

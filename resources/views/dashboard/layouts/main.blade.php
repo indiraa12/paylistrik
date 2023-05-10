@@ -79,8 +79,8 @@
                             </a>
                         </li>
 
-                        <li class="menu-item {{ Request::is('halaman/tagihan') ? 'active' : '' }}">
-                            <a href="/halaman/tagihan" class="menu-link" style="color:black">
+                        <li class="menu-item {{ Request::is('admin/tagihan*') ? 'active' : '' }}">
+                            <a href="{{ route('tagihan.index') }}" class="menu-link" style="color:black">
                                 <i class="menu-icon tf-icons bx bxs-receipt"></i>
                                 <div data-i18n="tagihan">Tagihan Pelanggan</div>
                             </a>

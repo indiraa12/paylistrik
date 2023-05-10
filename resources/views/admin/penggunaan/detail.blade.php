@@ -30,10 +30,6 @@
                         {{ $total }}
                     </td>
                 </tr>
-                {{-- <tr>
-                    <td align="left">Status</td>
-                    <td width="%">: <span class="badge bg-warning">Belum Bayar</span></td>
-                </tr> --}}
             </table>
 
             <div class="mb-3"></div>
@@ -46,7 +42,7 @@
                 </form>
             @else
                 <div class='form-text'>
-                    Tagihan Sudah Dibuat, Silahkan Cek Daftar <a href="{{ url('/halaman/tagihan') }}"
+                    Tagihan Sudah Dibuat, Silahkan Cek Daftar <a href="{{ route('tagihan.index') }}"
                         class="badge bg-label-success">Tagihan</a>
                 </div>
             @endif

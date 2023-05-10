@@ -15,8 +15,9 @@ class TagihanPelangganController extends Controller
      */
     public function index()
     {
-        $tagihan = TagihanPelanggan::all();
-        return view('halaman/tagihan/tagih', compact('tagihan'));
+        $tagihan = TagihanPelanggan::with('penggunaan','user')->latest()->get();
+        // return $tagihan;
+        return view('admin.tagihan.index', compact('tagihan'));
     }
 
     /**
