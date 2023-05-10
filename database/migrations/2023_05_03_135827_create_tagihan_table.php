@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('bulan');
             $table->year('tahun');
             $table->integer('jumlah_meter');
-            $table->string('status');
+            $table->string('status')->default('belum bayar');
             $table->timestamps();
         });
     }

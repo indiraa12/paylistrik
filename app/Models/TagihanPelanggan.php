@@ -11,15 +11,15 @@ class TagihanPelanggan extends Model
     protected $table = 'tagihan';
 
     protected $fillable = [
-        'id_penggunaan', 'id_pelanggan', 'bulan', 'tahun', 'jumlah_meter', 'status'
+        'id_penggunaan', 'user_id', 'bulan', 'tahun', 'jumlah_meter', 'status'
     ];
 
     public function penggunaan()
     {
         return $this->belongsTo(Penggunaan::class, 'id_penggunaan');
     }
-    public function pelanggan()
+    public function user()
     {
-        return $this->belongsTo(Pelanggan::class, 'id_pelanggan');
+        return $this->belongsTo(User::class);
     }
 }
