@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Penggunaan extends Model
 {
     use HasFactory;
+    protected $with = ['User.tarif'];
     protected $table = 'penggunaan';
 
     protected $fillable = [

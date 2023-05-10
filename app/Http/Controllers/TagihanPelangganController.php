@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Penggunaan;
 use App\Models\TagihanPelanggan;
 use Illuminate\Http\Request;
 
@@ -36,7 +37,13 @@ class TagihanPelangganController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $penggunaan = Penggunaan::where('id', $request->penggunaan_id)->first();
+        dd($penggunaan);
+        $data = $request->all();
+        $data['penggunaan_id'] = $penggunaan->penggunaan_id;
+        $data['user_id'] = $penggunaan->user_id;
+        // dd($data);
+        $data['bulan'] = $request->bulan;
     }
 
     /**

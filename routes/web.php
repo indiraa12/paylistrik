@@ -58,8 +58,8 @@ Route::middleware(["auth"])->group(function () {
     // ]);
 
     //tagihan admin
-    Route::resource("/admin/tagihan-admin", TagihanController::class);
-    Route::delete("/admin/tagihan/{id}", [TagihanController::class, "destroy"]);
+    // Route::resource("/admin/tagihan-admin", TagihanController::class);
+    // Route::delete("/admin/tagihan/{id}", [TagihanController::class, "destroy"]);
 
     //tarif
     Route::resource("/admin/tarif", TarifController::class);

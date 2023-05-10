@@ -11,7 +11,7 @@ class TagihanPelanggan extends Model
     protected $table = 'tagihan';
 
     protected $fillable = [
-        'id_penggunaan', 'user_id', 'bulan', 'tahun', 'jumlah_meter', 'status'
+        'penggunaan_id', 'user_id', 'bulan', 'tahun', 'jumlah_meter', 'status'
     ];
 
     public function penggunaan()

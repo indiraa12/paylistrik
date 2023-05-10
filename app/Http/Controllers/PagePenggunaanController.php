@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Pelanggan;
 use App\Models\Tagihan;
+use App\Models\TagihanPelanggan;
 use App\Models\User;
 
 class PagePenggunaanController extends Controller
@@ -58,8 +59,9 @@ class PagePenggunaanController extends Controller
      */
     public function show(Penggunaan $penggunaan)
     {
-
-        return view('admin.penggunaan.detail', compact('penggunaan'));
+        $bulanan = $penggunaan->meter_akhir - $penggunaan->meter_awal;
+        $total = $bulanan * $penggunaan->user->tarif->tarif_kwh;
+        return view('admin.penggunaan.detail', compact('penggunaan', 'total'));
     }
     // public function tampil(Penggunaan $penggunaan)
     // {
