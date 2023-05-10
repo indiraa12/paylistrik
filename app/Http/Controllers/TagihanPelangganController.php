@@ -45,8 +45,8 @@ class TagihanPelangganController extends Controller
         $data['bulan'] = $penggunaan->bulan;
         $data['tahun'] = $penggunaan->tahun;
         $bulanan = $penggunaan->meter_akhir - $penggunaan->meter_awal;
-        $total = $bulanan * $penggunaan->user->tarif->tarif_kwh;
-        $data['jumlah_meter'] = $total;
+        // $total = $bulanan * $penggunaan->user->tarif->tarif_kwh;
+        $data['jumlah_meter'] = $bulanan;
         $data['status'] = 'Belum Bayar';
         TagihanPelanggan::create($data);
         return back()->with('success', 'Tambah Data Tagihan Sukses!, Silahkan Cek Tagihan Anda');

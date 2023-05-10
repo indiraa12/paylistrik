@@ -35,6 +35,7 @@
                             <th>Bulan</th>
                             <th>Tahun</th>
                             <th>Jumlah Meter</th>
+                            <th>Total</th>
                             <th>Status</th>
                             <th>Tanggal di buat</th>
                             <th>Terakhir di update</th>
@@ -49,6 +50,8 @@
                             <td>{{ $item->bulan }}</td>
                             <td>{{ $item->tahun }}</td>
                             <td>{{ $item->jumlah_meter }}</td>
+                            <td>{{ $item->jumlah_meter * $item->user->tarif->tarif_kwh }}
+                            </td>
                             <td>
                                 @if ($item->status == 'Belum Bayar')
                                     <div class="badge bg-label-warning">Belum Bayar</div>
