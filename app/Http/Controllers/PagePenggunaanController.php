@@ -59,6 +59,7 @@ class PagePenggunaanController extends Controller
      */
     public function show(Penggunaan $penggunaan)
     {
+        // return $penggunaan;
         $bulanan = $penggunaan->meter_akhir - $penggunaan->meter_awal;
         $total = $bulanan * $penggunaan->user->tarif->tarif_kwh;
         return view('admin.penggunaan.detail', compact('penggunaan', 'total'));

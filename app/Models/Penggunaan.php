@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Penggunaan extends Model
 {
     use HasFactory;
-    protected $with = ['User.tarif'];
+    protected $with = ['User.tarif', 'TagihanPelanggan'];
     protected $table = 'penggunaan';
 
     protected $fillable = [
@@ -19,5 +19,9 @@ class Penggunaan extends Model
     public function User()
     {
         return $this->belongsTo(User::class);
+    }
+    public function TagihanPelanggan()
+    {
+        return $this->hasOne(TagihanPelanggan::class);
     }
 }

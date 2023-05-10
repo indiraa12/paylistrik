@@ -38,12 +38,17 @@ class TagihanPelangganController extends Controller
     public function store(Request $request)
     {
         $penggunaan = Penggunaan::where('id', $request->penggunaan_id)->first();
-        dd($penggunaan);
         $data = $request->all();
-        $data['penggunaan_id'] = $penggunaan->penggunaan_id;
+        $data['penggunaan_id'] = $request->penggunaan_id;
         $data['user_id'] = $penggunaan->user_id;
-        // dd($data);
-        $data['bulan'] = $request->bulan;
+        $data['bulan'] = $penggunaan->bulan;
+        $data['tahun'] = $penggunaan->tahun;
+        $bulanan = $penggunaan->meter_akhir - $penggunaan->meter_awal;
+        $total = $bulanan * $penggunaan->user->tarif->tarif_kwh;
+        $data['jumlah_meter'] = $total;
+        $data['status'] = 'Belum Bayar';
+        TagihanPelanggan::create($data);
+        return back()->with('success', 'Tambah Data Tagihan Sukses!, Silahkan Cek Tagihan Anda');
     }
 
     /**
