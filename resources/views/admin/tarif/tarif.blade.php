@@ -58,12 +58,14 @@
                             <td>Rp.{{ $item['tarif_kwh'] }}</td>
                             <td>
                                 <a href="{{ route('tarif.edit', $item->id) }}" class="badge bg-warning"><i
-                                    class="menu-icon tf-icons bx bxs-edit"></i></a>
-                                    <form action="/admin/tarif/{{ $item->id }}" onsubmit="return confirm('apakah anda yakin?')" method="POST" class="d-inline">
-                                        @method('delete')
-                                        @csrf
-                                        <button type="submit" class="badge bg-danger border-0"><i class=" bx bx-trash"></i></button>
-                                      </form>
+                                        class="menu-icon tf-icons bx bxs-edit"></i></a>
+                                <form action="/admin/tarif/{{ $item->id }}"
+                                    onsubmit="return confirm('apakah anda yakin?')" method="POST" class="d-inline">
+                                    @method('delete')
+                                    @csrf
+                                    <button type="submit" class="badge bg-danger border-0"><i
+                                            class=" bx bx-trash"></i></button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
