@@ -46,8 +46,8 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->User->name }}</td>
-                            <td>{{ $item['bulan'] }}</td>
-                            <td>{{ $item['tahun'] }}</td>
+                            <td>{{ $item->bulan->translatedFormat('F') }}</td>
+                            <td>{{ $item->tahun }}</td>
                             <td>{{ $item['meter_awal'] }}</td>
                             <td>{{ $item['meter_akhir'] }}</td>
                             <td>

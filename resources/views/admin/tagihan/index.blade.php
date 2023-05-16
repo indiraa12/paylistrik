@@ -49,7 +49,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td><a href="{{ route('tagihan.show', $item->id) }}">{{ $item->user->name }}</a></td>
                             <td>{{ $item->user->nomor_kwh }}</td>
-                            <td>{{ $item->bulan }}</td>
+                            <td>{{ $item->bulan->translatedFormat('F') }}</td>
                             <td>{{ $item->tahun }}</td>
                             <td>{{ $item->jumlah_meter }}</td>
                             <td>
@@ -62,8 +62,8 @@
                                     <div class="badge bg-label-success">Lunas</div>
                                 @endif
                             </td>
-                            <td>{{ $item->created_at->format('d, M Y') }}</td>
-                            <td>{{ $item->updated_at->format('d, M Y | H:i:s') }}</td>
+                            <td>{{ $item->created_at->translatedFormat('d, M Y') }}</td>
+                            <td>{{ $item->updated_at->translatedFormat('d, M Y | H:i:s') }}</td>
                             <td>
                                 <form action="/admin/tagihan/{{ $item->id }}"
                                     onsubmit="return confirm('apakah anda yakin?')" method="POST" class="d-inline">

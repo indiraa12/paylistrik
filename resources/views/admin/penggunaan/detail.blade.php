@@ -18,7 +18,7 @@
                 </tr>
                 <tr>
                     <td align="left">Bulan</td>
-                    <td width="5%">: {{ $penggunaan->bulan }}</td>
+                    <td width="5%">: {{ $penggunaan->bulan->translatedFormat('F') }}</td>
                 </tr>
                 <tr>
                     <td align="left">Tahun</td>

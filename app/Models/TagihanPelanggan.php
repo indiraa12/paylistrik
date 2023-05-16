@@ -9,6 +9,7 @@ class TagihanPelanggan extends Model
 {
     use HasFactory;
     protected $table = 'tagihan';
+    protected $dates = ['bulan'];
 
     protected $fillable = [
         'penggunaan_id', 'user_id', 'bulan', 'tahun', 'jumlah_meter', 'status'

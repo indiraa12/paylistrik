@@ -2,7 +2,7 @@
 @section('konten')
     <div class="card ">
         <h5 class="card-header">Data Tagihan Listrik <b class="text-capitalize">{{ $tagihan->user->name }}</b> pada bulan <b
-                class="text-capitalize">{{ $tagihan->bulan }}</b></h5>
+                class="text-capitalize">{{ $tagihan->bulan->translatedFormat('F') }}</b></h5>
         <div class="card-body">
             {{-- <small class="text-light fw-semibold">Description list alignment</small> --}}
             <div class="d-flex">
@@ -10,12 +10,12 @@
                     <dt class="col-sm-5">Nama :</dt>
                     <dd class="col-sm-7">{{ $tagihan->user->name }}</dd>
                     <dt class="col-sm-5">Bulan tagihan :</dt>
-                    <dd class="col-sm-7 text-capitalize">{{ $tagihan->bulan }}</dd>
+                    <dd class="col-sm-7 text-capitalize">{{ $tagihan->bulan->translatedFormat('F') }}</dd>
                     <dt class="col-sm-5">Total tagihan :</dt>
                     <dd class="col-sm-7">@rupiah($tagihan->jumlah_meter * $tagihan->user->tarif->tarif_kwh)</dd>
                     <dt class="col-sm-5 text-truncate">Tanggal tagihan dibuat :</dt>
                     <dd class="col-sm-7">
-                        {{ $tagihan->created_at->format('d F, Y') }}
+                        {{ $tagihan->created_at->translatedFormat('d F, Y') }}
                     </dd>
                     <dt class="col-sm-5">Status pembayaran :</dt>
                     <dd class="col-sm-7">
@@ -37,7 +37,7 @@
                     <dd class="col-sm-7">{{ $tagihan->jumlah_meter }}</dd>
                     <dt class="col-sm-5">Update terbaru :</dt>
                     <dd class="col-sm-7">
-                        {{ $tagihan->updated_at->format('d F, Y | H:i:s ') }}
+                        {{ $tagihan->updated_at->translatedFormat('d F, Y | H:i:s ') }}
                     </dd>
                 </dl>
             </div>

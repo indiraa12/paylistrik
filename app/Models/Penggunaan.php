@@ -11,6 +11,7 @@ class Penggunaan extends Model
     use HasFactory;
     protected $with = ['User.tarif', 'TagihanPelanggan'];
     protected $table = 'penggunaan';
+    protected $dates = ['bulan'];
 
     protected $fillable = [
         'user_id', 'bulan', 'tahun', 'meter_awal', 'meter_akhir', 'id_tarif'

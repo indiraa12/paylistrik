@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('pembayaran', function (Blueprint $table) {
             $table->bigIncrements('id_pembayaran');
-            $table->foreignId('tagihan_id')->constrained('tagihan');
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('tagihan_id')->constrained('tagihan')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->date('tanggal_pembayaran');
             $table->string('bulan_bayar');
             $table->integer('biaya_admin');
