@@ -31,8 +31,14 @@ class PagePenggunaanController extends Controller
      */
     public function create()
     {
+        $years = range(date("Y"), date("Y") - 5);
+        $namaBulan = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $namaBulan[] = date("F", mktime(0, 0, 0, $i, 1));
+        }
+        // return $namaBulan;
         $users = User::where('role_id', 2)->get();
-        return view('admin.penggunaan.tambah', compact('users'));
+        return view('admin.penggunaan.tambah', compact('users', 'years', 'namaBulan'));
     }
 
 

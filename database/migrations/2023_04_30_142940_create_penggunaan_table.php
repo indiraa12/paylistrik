@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('bulan');
-            $table->year('tahun');
+            $table->integer('tahun');
             $table->integer('meter_awal');
             $table->integer('meter_akhir');
             $table->timestamps();
