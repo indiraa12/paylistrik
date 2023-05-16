@@ -62,7 +62,13 @@
                             <td>{{ $item->created_at->format('d, M Y') }}</td>
                             <td>{{ $item->updated_at->format('d, M Y | H:i:s') }}</td>
                             <td>
-                                -
+                                <form action="/admin/tagihan/{{ $item->id }}"
+                                    onsubmit="return confirm('apakah anda yakin?')" method="POST" class="d-inline">
+                                    @method('delete')
+                                    @csrf
+                                    <button type="submit" class="badge bg-danger border-0"><i
+                                            class=" bx bx-trash"></i></button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

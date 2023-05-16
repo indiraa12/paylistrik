@@ -3,7 +3,7 @@
     <!-- Bordered Table -->
 
     <div class="card ">
-        <h5 class="card-header" align="center">Daftar Data Tagihan</h5>
+        <h5 class="card-header" align="center">Rincian Pembayaran</h5>
         <div class="card-body">
             @if (session()->has('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -61,7 +61,8 @@
                             <td>{{ $item->created_at->format('d, M Y') }}</td>
                             <td>{{ $item->updated_at->format('d, M Y | H:i:s') }}</td>
                             <td>
-                                -
+                                <a href="{{ route('tagihan.show', $item->id) }}" class="badge bg-success"><i
+                                    class='bx bx-detail'></i></i></a>
                             </td>
                         </tr>
                     @endforeach

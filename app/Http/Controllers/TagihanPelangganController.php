@@ -15,7 +15,7 @@ class TagihanPelangganController extends Controller
      */
     public function index()
     {
-        $tagihan = TagihanPelanggan::with('penggunaan','user')->latest()->get();
+        $tagihan = TagihanPelanggan::with('penggunaan', 'user')->latest()->get();
         // return $tagihan;
         return view('admin.tagihan.index', compact('tagihan'));
     }
@@ -60,7 +60,7 @@ class TagihanPelangganController extends Controller
      */
     public function show(TagihanPelanggan $tagihanPelanggan)
     {
-        //
+        return view("halaman.pembayaran.bayar", compact("tagihanPelanggan"));
     }
 
     /**
@@ -94,6 +94,10 @@ class TagihanPelangganController extends Controller
      */
     public function destroy(TagihanPelanggan $tagihanPelanggan)
     {
-        //
+        $tagihanPelanggan->delete();
+        return redirect("/admin/tagihan")->with(
+            "hapus",
+            "Hapus Data Sukses!!!"
+        );
     }
 }

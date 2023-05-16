@@ -1,7 +1,10 @@
 <?php
 
+use App\Models\TagihanPelanggan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\TarifController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\TagihanController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
@@ -9,8 +12,6 @@ use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PagePelangganController;
 use App\Http\Controllers\PagePenggunaanController;
 use App\Http\Controllers\TagihanPelangganController;
-use App\Http\Controllers\TarifController;
-use App\Models\TagihanPelanggan;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,30 +50,21 @@ Route::middleware(["auth"])->group(function () {
     //penggunaan
     Route::resource("/admin/penggunaan", PagePenggunaanController::class);
 
-    // Route::get("/admin/penggunaan/{id}/", [
-    //     PagePenggunaanController::class,
-    //     "tampil",
-    // ]);
-    // Route::delete("/admin/penggunaan/{id}", [
-    //     PagePenggunaanController::class,
-    //     "destroy",
-    // ]);
-
-    //tagihan admin
-    // Route::resource("/admin/tagihan-admin", TagihanController::class);
-    // Route::delete("/admin/tagihan/{id}", [TagihanController::class, "destroy"]);
-
     //tarif
     Route::resource("/admin/tarif", TarifController::class);
+    //laporan
+    Route::resource("/admin/laporan", LaporanController::class);
+
+
     //pembayaran pelanggan
     Route::resource("/halaman/pembayaran", PembayaranController::class);
     //tagihan pelanggan
     Route::resource("/admin/tagihan", TagihanPelangganController::class);
 
     Route::get('/halaman/tagihan', function () {
-        $tagihan = TagihanPelanggan::with('penggunaan','user')
-        ->where('user_id', auth()->user()->id)
-        ->get();
+        $tagihan = TagihanPelanggan::with('penggunaan', 'user')
+            ->where('user_id', auth()->user()->id)
+            ->get();
         return view('halaman/tagihan/tagih', compact('tagihan'));
     });
 });

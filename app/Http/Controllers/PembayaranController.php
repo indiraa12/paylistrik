@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Pelanggan;
 use App\Models\Pembayaran;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Penggunaan;
 
 class PembayaranController extends Controller
 {
@@ -15,9 +17,10 @@ class PembayaranController extends Controller
      */
     public function index(Request $request)
     {
-       
-        $bayar = Pembayaran::all();
+        $bayar = Pembayaran::with('User')->latest()->get();
         return view('halaman/pembayaran/bayar', compact('bayar'));
+        // $bayar = Pembayaran::all();
+        // return view('halaman/pembayaran/bayar', compact('bayar'));
     }
 
     /**
@@ -39,8 +42,8 @@ class PembayaranController extends Controller
      */
     public function store(Request $request)
     {
-       Pembayaran::create($request->all());
-       return redirect('/halaman/pembayaran')->with('success', 'Tambah Data Sukses!!!');
+        Pembayaran::create($request->all());
+        return redirect('/halaman/pembayaran')->with('success', 'Tambah Data Sukses!!!');
     }
 
     /**
@@ -74,7 +77,10 @@ class PembayaranController extends Controller
      */
     public function update(Request $request, Pembayaran $pembayaran)
     {
-        //
+        $data = $request->all();
+        $data['id_pembayaran'] = $request->id_pembayaran;
+        $pembayaran->update($data);
+        return redirect('/admin/penggunaan')->with('berhasil', 'Edit Data Sukses!!!');
     }
 
     /**

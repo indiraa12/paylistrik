@@ -64,10 +64,7 @@ class PagePenggunaanController extends Controller
         $total = $bulanan * $penggunaan->user->tarif->tarif_kwh;
         return view('admin.penggunaan.detail', compact('penggunaan', 'total'));
     }
-    // public function tampil(Penggunaan $penggunaan)
-    // {
-    //     return view("admin.penggunaan.update", compact("penggunaan"));
-    // }
+
 
     /**
      * Show the form for editing the specified resource.
