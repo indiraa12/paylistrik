@@ -18,19 +18,19 @@ class TarifSeeder extends Seeder
         $tarif = [
             [
                 'daya' => '900 VA',
-                'tarif_kwh' => '1444',
+                'tarif_kwh' => 1444,
             ],
             [
                 'daya' => '1300 VA',
-                'tarif_kwh' => '1444',
+                'tarif_kwh' => 1444,
             ],
             [
                 'daya' => '2200 VA',
-                'tarif_kwh' => '1444',
+                'tarif_kwh' => 1444,
             ],
             [
                 'daya' => '3500 VA',
-                'tarif_kwh' => '1699',
+                'tarif_kwh' => 1699,
             ],
         ];
         foreach ($tarif as $value) {

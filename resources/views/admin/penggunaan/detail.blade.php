@@ -27,7 +27,7 @@
                 <tr>
                     <td align="left">Jumlah Tagihan</td>
                     <td width="80%">:
-                        {{ $total }}
+                        @rupiah($total)
                     </td>
                 </tr>
             </table>

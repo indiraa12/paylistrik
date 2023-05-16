@@ -68,7 +68,7 @@
                             <td>
                                 <ol>
                                     <li>Daya : {{ $item->tarif->daya }}</li>
-                                    <li>Tarif : {{ $item->tarif->tarif_kwh }}</li>
+                                    <li>Tarif : @rupiah($item->tarif->tarif_kwh)</li>
                                 </ol>
                             </td>
                             {{-- <td>{{ $item['id_tarif'] }}</td> --}}
