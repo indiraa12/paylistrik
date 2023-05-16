@@ -50,7 +50,7 @@
                             <td>{{ $item->bulan }}</td>
                             <td>{{ $item->tahun }}</td>
                             <td>{{ $item->jumlah_meter }}</td>
-                            <td>{{ $item->jumlah_meter * $item->user->tarif->tarif_kwh }}
+                            <td>@rupiah($item->jumlah_meter * $item->user->tarif->tarif_kwh)</td>
                             <td>
                                 @if ($item->status == 'Belum Bayar')
                                     <div class="badge bg-label-warning">Belum Bayar</div>
@@ -61,8 +61,9 @@
                             <td>{{ $item->created_at->format('d, M Y') }}</td>
                             <td>{{ $item->updated_at->format('d, M Y | H:i:s') }}</td>
                             <td>
-                                <a href="{{ route('tagihan.show', $item->id) }}" class="badge bg-success"><i
-                                    class='bx bx-detail'></i></i></a>
+                                <a href="{{ route('tagihan.show', $item->id) }}" class="btn btn-primary btn-sm">
+                                    Bayar Tagihan
+                                </a>
                             </td>
                         </tr>
                     @endforeach

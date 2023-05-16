@@ -30,6 +30,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>Nama pengguna</th>
                             <th>Nomer Kwh</th>
                             <th>Bulan</th>
@@ -45,7 +46,8 @@
 
                     @foreach ($tagihan as $item)
                         <tr>
-                            <td>{{ $item->user->name }}</td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td><a href="{{ route('tagihan.show', $item->id) }}">{{ $item->user->name }}</a></td>
                             <td>{{ $item->user->nomor_kwh }}</td>
                             <td>{{ $item->bulan }}</td>
                             <td>{{ $item->tahun }}</td>

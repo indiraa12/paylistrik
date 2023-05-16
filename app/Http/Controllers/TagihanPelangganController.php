@@ -55,21 +55,19 @@ class TagihanPelangganController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\TagihanPelanggan  $tagihanPelanggan
-     * @return \Illuminate\Http\Response
      */
-    public function show(TagihanPelanggan $tagihanPelanggan)
+    public function show(TagihanPelanggan $tagihan)
     {
-        return view("halaman.pembayaran.bayar", compact("tagihanPelanggan"));
+        $tagihan = TagihanPelanggan::with('penggunaan', 'user')->where('id', $tagihan->id)->first();
+        // return $tagihan;
+        return view("admin.tagihan.show", compact("tagihan"));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\TagihanPelanggan  $tagihanPelanggan
-     * @return \Illuminate\Http\Response
      */
-    public function edit(TagihanPelanggan $tagihanPelanggan)
+    public function edit(TagihanPelanggan $tagihan)
     {
         //
     }
@@ -78,10 +76,9 @@ class TagihanPelangganController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TagihanPelanggan  $tagihanPelanggan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TagihanPelanggan $tagihanPelanggan)
+    public function update(Request $request, TagihanPelanggan $tagihan)
     {
         //
     }
@@ -89,12 +86,10 @@ class TagihanPelangganController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\TagihanPelanggan  $tagihanPelanggan
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(TagihanPelanggan $tagihanPelanggan)
+    public function destroy(TagihanPelanggan $tagihan)
     {
-        $tagihanPelanggan->delete();
+        // $tagihanPelanggan->delete();
         return redirect("/admin/tagihan")->with(
             "hapus",
             "Hapus Data Sukses!!!"
