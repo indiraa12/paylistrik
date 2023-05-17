@@ -31,7 +31,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>ID Penggunaan</th>
+                            <th>No</th>
                             <th>Nama</th>
                             <th>Bulan</th>
                             <th>Tahun</th>

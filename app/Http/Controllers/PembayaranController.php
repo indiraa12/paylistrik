@@ -7,6 +7,7 @@ use App\Models\Pembayaran;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Penggunaan;
+use App\Models\TagihanPelanggan;
 
 class PembayaranController extends Controller
 {
@@ -42,8 +43,44 @@ class PembayaranController extends Controller
      */
     public function store(Request $request)
     {
-        Pembayaran::create($request->all());
-        return redirect('/halaman/pembayaran')->with('success', 'Tambah Data Sukses!!!');
+        $request->validate([
+                'tagihan_id' => 'required',
+                // 'user_id' => 'required|exists:users,id',
+                'tanggal_pembayaran' => 'required',
+                // 'biaya_admin' => 'required',
+                'total_bayar' => 'required',
+        ],[
+                'tagihan_id.required' => 'Pelanggan harus diisi',
+                // 'user_id.required' => 'Petugas harus diisi',
+                'tanggal_pembayaran.required' => 'Tanggal pembayaran harus diisi',
+                // 'biaya_admin.required' => 'Biaya admin harus diisi',
+                'total_bayar.required' => 'Total bayar harus diisi',
+        ]);
+        $tagihan = TagihanPelanggan::with('penggunaan', 'user')->where('id', $request->tagihan_id)->first();
+        // return $tagihan;
+        $data = $request->all();
+        // $data['user_id'] = $request->user_id;
+        $data['tagihan_id'] = $request->tagihan_id;
+        $data['biaya_admin'] = 2500;
+        if ($data["total_bayar"] > $tagihan->jumlah_meter * $tagihan->user->tarif->tarif_kwh + $data['biaya_admin']){
+            // return 'lebih';
+            return back()->with('error', 'Uang yang anda masukkan lebih dari tagihan');
+        }
+
+        if ($data["total_bayar"] >= $tagihan->jumlah_meter * $tagihan->user->tarif->tarif_kwh + $data['biaya_admin']){
+            // return 'lunas';
+            $tagihan->status = 'Lunas';
+            // return back()->with('success', 'Pembayaran tagihan berhasil di simpan!');
+        }
+
+        if ($data["total_bayar"] < $tagihan->jumlah_meter * $tagihan->user->tarif->tarif_kwh + $data['biaya_admin']){
+            // return 'kurang';
+            return back()->with('error', 'Uang yang anda masukkan kurang dari tagihan');
+        }
+
+        $tagihan->save();
+        Pembayaran::create($data);
+        return back()->with('success', 'Pembayaran tagihan berhasil di simpan!');
     }
 
     /**

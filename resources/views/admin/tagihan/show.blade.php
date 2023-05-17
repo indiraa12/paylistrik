@@ -4,6 +4,12 @@
         <h5 class="card-header">Data Tagihan Listrik <b class="text-capitalize">{{ $tagihan->user->name }}</b> pada bulan <b
                 class="text-capitalize">{{ $tagihan->bulan->translatedFormat('F') }}</b></h5>
         <div class="card-body">
+            @if (session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             {{-- <small class="text-light fw-semibold">Description list alignment</small> --}}
             <div class="d-flex">
                 <dl class="row mt-2">
@@ -43,75 +49,57 @@
             </div>
         </div>
         <hr class="m-0" />
+        <h5 class="card-header">Form Pembayaran Tagihan Listrik</h5>
         <div class="card-body">
-            <form method="POST" action="/admin/tagihan-admin">
+            @if (session()->has('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+            @foreach ($errors->all() as $item)
+                {{ $item }}
+            @endforeach
+            <form method="POST" action="{{ route('pembayaran.store') }}">
                 @csrf
+                <input type="hidden" name="tagihan_id" value="{{ $tagihan->id }}">
+                {{-- <input type="hidden" name="user_id" value="{{ $tagihan->user->id }}"> --}}
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="penggunaan">ID Tagihan</label>
-                    <div class="col-sm-4">
-                        <input type="text" name="id_tagihan" class="form-control" id="id_tagihan" />
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="alamat">ID Penggunaan</label>
+                    <label class="col-sm-2 col-form-label" for="basic-default-company">Tanggal Pembayaran</label>
                     <div class="col-sm-10">
-                        <select name="id_penggunaan" class="form-control" required>
-                            {{-- @foreach ($data as $item)
-                                <option>{{ $item->id_penggunaan }}</option>
-                            @endforeach --}}
-                        </select>
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="alamat">ID Pelanggan</label>
-                    <div class="col-sm-10">
-                        <select name="id_pelanggan" class="form-control" required>
-                            {{-- @foreach ($pelanggan as $item)
-                                <option>{{ $item->id_pelanggan }}</option>
-                            @endforeach --}}
-                        </select>
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="basic-default-company">Bulan</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="bulan" class="form-control" id="basic-default-company"
+                        <input type="date" value="{{ carbon\carbon::now()->translatedFormat('Y-m-d') }}"
+                            name="tanggal_pembayaran" class="form-control" id="basic-default-company"
                             placeholder="Masukkan Username" />
                     </div>
                 </div>
 
-                <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="tahun">Tahun</label>
+                {{-- <div class="row mb-3 btn">
+                    <label class="col-sm-2 col-form-label" for="tahun">Biaya Admin</label>
                     <div class="col-sm-10">
                         <div class="input-group input-group-merge">
-                            <input type="text" id="tahun" class="form-control" name="tahun"
+                            <input type="number" id="tahun" class="form-control" name="biaya_admin"
+                                placeholder="Masukkan biaya admin" aria-describedby="tahun" />
+                        </div>
+                    </div>
+                </div> --}}
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="tahun">Total Bayar</label>
+                    <div class="col-sm-10">
+                        <div class="input-group input-group-merge">
+                            <input type="number" id="tahun" class="form-control" name="total_bayar"
                                 placeholder="Masukkan bulan bayar" aria-describedby="tahun" />
+                        </div>
+                        <div class="form-text text-dark">Tagihan <b>{{ $tagihan->penggunaan->user->name }}</b> bulan ini
+                            @rupiah($tagihan->jumlah_meter * $tagihan->user->tarif->tarif_kwh) + biaya admin Rp.
+                            2500 =
+                            <b>@rupiah($tagihan->jumlah_meter * $tagihan->user->tarif->tarif_kwh + 2500)</b>
                         </div>
                     </div>
                 </div>
-
-                <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="number">Jumlah Meter</label>
-                    <div class="col-sm-10">
-                        <input type="number" name="jumlah_meter" id="number" class="form-control phone-mask"
-                            placeholder="Masukkan No. Listrik" aria-describedby="number" />
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="nama">Status</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="status" id="nama" class="form-control phone-mask"
-                            placeholder="Masukkan Nama Lengkap" aria-describedby="nama" />
-                    </div>
-                </div>
-
                 <div class="row justify-content-end">
                     <div class="col-sm-10">
-                        <button type="submit" class="btn btn-primary">Tambah</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </div>
             </form>

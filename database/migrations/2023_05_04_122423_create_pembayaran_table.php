@@ -14,12 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pembayaran', function (Blueprint $table) {
-            $table->bigIncrements('id_pembayaran');
+            $table->id();
             $table->foreignId('tagihan_id')->constrained('tagihan')->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            // $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->date('tanggal_pembayaran');
-            $table->string('bulan_bayar');
-            $table->integer('biaya_admin');
+            $table->integer('biaya_admin')->default(0);
             $table->integer('total_bayar');
             $table->timestamps();
         });
