@@ -49,60 +49,64 @@
             </div>
         </div>
         <hr class="m-0" />
-        <h5 class="card-header">Form Pembayaran Tagihan Listrik</h5>
-        <div class="card-body">
-            @if (session()->has('error'))
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    {{ session('error') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif
-            @foreach ($errors->all() as $item)
-                {{ $item }}
-            @endforeach
-            <form method="POST" action="{{ route('pembayaran.store') }}">
-                @csrf
-                <input type="hidden" name="tagihan_id" value="{{ $tagihan->id }}">
-                {{-- <input type="hidden" name="user_id" value="{{ $tagihan->user->id }}"> --}}
-                <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="basic-default-company">Tanggal Pembayaran</label>
-                    <div class="col-sm-10">
-                        <input type="date" value="{{ carbon\carbon::now()->translatedFormat('Y-m-d') }}"
-                            name="tanggal_pembayaran" class="form-control" id="basic-default-company"
-                            placeholder="Masukkan Username" />
+        @if ($tagihan->status == 'Lunas')
+            <div class='text-secondary text-center my-4'>Tagihan Listrik
+                <b>{{ $tagihan->user->name }}</b>
+                sudah
+                <span class="badge bg-label-success">Lunas</span>, pada tanggal
+                {{ $tagihan->updated_at->translatedFormat('d F Y') }},
+                silahkan
+                cetak bukti
+                <span class="text-decoration-underline">pembayaran.</span>
+            </div>
+        @else
+            <h5 class="card-header">Form Pembayaran Tagihan Listrik</h5>
+            <div class="card-body">
+                @if (session()->has('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                </div>
+                @endif
+                @foreach ($errors->all() as $item)
+                    {{ $item }}
+                @endforeach
+                <form onsubmit="return confirm('apakah anda yakin?')" method="POST"
+                    action="{{ route('pembayaran.store') }}">
+                    @csrf
+                    <input type="hidden" name="tagihan_id" value="{{ $tagihan->id }}">
+                    {{-- <input type="hidden" name="user_id" value="{{ $tagihan->user->id }}"> --}}
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="basic-default-company">Tanggal Pembayaran</label>
+                        <div class="col-sm-10">
+                            <input type="date" value="{{ carbon\carbon::now()->translatedFormat('Y-m-d') }}"
+                                name="tanggal_pembayaran" class="form-control" id="basic-default-company"
+                                placeholder="Masukkan Username" />
+                        </div>
+                    </div>
 
-                {{-- <div class="row mb-3 btn">
-                    <label class="col-sm-2 col-form-label" for="tahun">Biaya Admin</label>
-                    <div class="col-sm-10">
-                        <div class="input-group input-group-merge">
-                            <input type="number" id="tahun" class="form-control" name="biaya_admin"
-                                placeholder="Masukkan biaya admin" aria-describedby="tahun" />
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="tahun">Total Bayar</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+                                <input type="number" id="tahun" class="form-control" name="total_bayar"
+                                    placeholder="Masukkan bulan bayar" aria-describedby="tahun" />
+                            </div>
+                            <div class="form-text text-dark">Tagihan <b>{{ $tagihan->penggunaan->user->name }}</b> bulan
+                                ini
+                                @rupiah($tagihan->jumlah_meter * $tagihan->user->tarif->tarif_kwh) + biaya admin Rp.
+                                2500 =
+                                <b>@rupiah($tagihan->jumlah_meter * $tagihan->user->tarif->tarif_kwh + 2500)</b>
+                            </div>
                         </div>
                     </div>
-                </div> --}}
-
-                <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="tahun">Total Bayar</label>
-                    <div class="col-sm-10">
-                        <div class="input-group input-group-merge">
-                            <input type="number" id="tahun" class="form-control" name="total_bayar"
-                                placeholder="Masukkan bulan bayar" aria-describedby="tahun" />
-                        </div>
-                        <div class="form-text text-dark">Tagihan <b>{{ $tagihan->penggunaan->user->name }}</b> bulan ini
-                            @rupiah($tagihan->jumlah_meter * $tagihan->user->tarif->tarif_kwh) + biaya admin Rp.
-                            2500 =
-                            <b>@rupiah($tagihan->jumlah_meter * $tagihan->user->tarif->tarif_kwh + 2500)</b>
+                    <div class="row justify-content-end">
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </div>
                     </div>
-                </div>
-                <div class="row justify-content-end">
-                    <div class="col-sm-10">
-                        <button type="submit" class="btn btn-primary">Save</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+                </form>
+            </div>
+        @endif
     </div>
 @endsection
