@@ -12,6 +12,8 @@ use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PagePelangganController;
 use App\Http\Controllers\PagePenggunaanController;
 use App\Http\Controllers\TagihanPelangganController;
+use App\Models\Pelanggan;
+use App\Models\Pembayaran;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,5 +68,18 @@ Route::middleware(["auth"])->group(function () {
             ->where('user_id', auth()->user()->id)
             ->get();
         return view('halaman/tagihan/tagih', compact('tagihan'));
+    });
+
+    Route::get('/halaman/pembayaran', function () {
+        $user = auth()->user()->id;
+        $bayar = Pembayaran::with('tagihan.user')
+            ->whereHas('tagihan', function ($query) use ($user) {
+                $query->where('user_id', $user);
+            })
+            ->latest()
+            ->get();
+        // ->latest()->get();
+        // return $bayar;
+        return view('admin.pembayaran.index', compact('bayar'));
     });
 });
