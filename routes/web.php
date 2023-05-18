@@ -62,13 +62,7 @@ Route::middleware(["auth"])->group(function () {
     Route::resource("/admin/pembayaran", PembayaranController::class);
     //tagihan pelanggan
     Route::resource("/admin/tagihan", TagihanPelangganController::class);
-
-    Route::get('/halaman/tagihan', function () {
-        $tagihan = TagihanPelanggan::with('penggunaan', 'user')
-            ->where('user_id', auth()->user()->id)
-            ->get();
-        return view('halaman/tagihan/tagih', compact('tagihan'));
-    });
+    // Route::resource("/admin/tagihan", TagihanPelangganController::class);
 
     Route::get('/halaman/pembayaran', function () {
         $user = auth()->user()->id;
@@ -81,5 +75,19 @@ Route::middleware(["auth"])->group(function () {
         // ->latest()->get();
         // return $bayar;
         return view('admin.pembayaran.index', compact('bayar'));
+    })->name('user-pembayaran.index');
+
+    Route::get('/halaman/tagihan', function () {
+        $tagihan = TagihanPelanggan::with('penggunaan', 'user')
+            ->where('user_id', auth()->user()->id)
+            ->get();
+        return view('halaman/tagihan/tagih', compact('tagihan'));
     });
+
+    Route::get('/halaman/tagihan/{tagihan}', function (TagihanPelanggan $tagihan) {
+        $tagihan = TagihanPelanggan::with('penggunaan', 'user')->where('id', $tagihan->id)->first();
+        // return $tagihan;
+        return view('halaman.tagihan.show', compact('tagihan'));
+    })->name('user-tagihan.show');
+
 });
