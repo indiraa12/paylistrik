@@ -18,10 +18,9 @@ class PembayaranController extends Controller
      */
     public function index(Request $request)
     {
-        $bayar = Pembayaran::with('User')->latest()->get();
-        return view('halaman/pembayaran/bayar', compact('bayar'));
-        // $bayar = Pembayaran::all();
-        // return view('halaman/pembayaran/bayar', compact('bayar'));
+        $bayar = Pembayaran::with('tagihan.user')->latest()->get();
+        // return $bayar;
+        return view('admin.pembayaran.index', compact('bayar'));
     }
 
     /**

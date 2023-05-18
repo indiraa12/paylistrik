@@ -61,9 +61,14 @@
                             <td>{{ $item->created_at->format('d, M Y') }}</td>
                             <td>{{ $item->updated_at->format('d, M Y | H:i:s') }}</td>
                             <td>
-                                <a href="{{ route('tagihan.show', $item->id) }}" class="btn btn-primary btn-sm">
-                                    Bayar Tagihan
-                                </a>
+                                @if ($item->status == 'Belum Bayar')
+                                    <a href="{{ route('tagihan.show', $item->id) }}" class="btn btn-primary btn-sm">
+                                        Bayar Tagihan
+                                    </a>
+                                @else
+                                    <a href="{{ route('tagihan.show', $item->id) }}" class="btn btn-success btn-sm">
+                                        Detail Tagihan
+                                @endif
                             </td>
                         </tr>
                     @endforeach

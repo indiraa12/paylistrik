@@ -57,7 +57,7 @@
                 {{ $tagihan->updated_at->translatedFormat('d F Y') }},
                 silahkan
                 cetak bukti
-                <span class="text-decoration-underline">pembayaran.</span>
+                <a href="{{ route('pembayaran.index') }}" class="text-decoration-underline">pembayaran.</a>
             </div>
         @else
             <h5 class="card-header">Form Pembayaran Tagihan Listrik</h5>

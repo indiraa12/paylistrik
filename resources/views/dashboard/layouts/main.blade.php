@@ -90,7 +90,14 @@
                             <span class="menu-header-text">Lainnya</span>
                         </li>
                         <!-- Laporan -->
-                        
+
+
+                        <li class="menu-item  {{ Request::is('admin/pembayaran*') ? 'active' : '' }}">
+                            <a href="{{ route('pembayaran.index') }}" class="menu-link" style="color:black">
+                                <i class='menu-icon tf-icons bx bxs-report'></i>
+                                <div data-i18n="Basic">Pembayaran</div>
+                            </a>
+                        </li>
 
                         <li class="menu-item  {{ Request::is('admin/laporan*') ? 'active' : '' }}">
                             <a href="/admin/laporan" class="menu-link" style="color:black">

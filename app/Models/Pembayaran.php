@@ -13,8 +13,8 @@ class Pembayaran extends Model
     protected $guarded = [];
     protected $dates = ['tanggal_pembayaran'];
 
-    public function pelanggan()
+    public function tagihan()
     {
-        return $this->belongsTo(TagihanPelanggan::class, 'pelanggan_id');
+        return $this->belongsTo(TagihanPelanggan::class, 'tagihan_id', 'id');
     }
 }

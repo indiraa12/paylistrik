@@ -57,7 +57,7 @@ Route::middleware(["auth"])->group(function () {
 
 
     //pembayaran pelanggan
-    Route::resource("/halaman/pembayaran", PembayaranController::class);
+    Route::resource("/admin/pembayaran", PembayaranController::class);
     //tagihan pelanggan
     Route::resource("/admin/tagihan", TagihanPelangganController::class);
 
