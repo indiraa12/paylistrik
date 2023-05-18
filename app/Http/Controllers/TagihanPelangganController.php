@@ -89,7 +89,7 @@ class TagihanPelangganController extends Controller
      */
     public function destroy(TagihanPelanggan $tagihan)
     {
-        // $tagihanPelanggan->delete();
+        $tagihan->delete();
         return redirect("/admin/tagihan")->with(
             "hapus",
             "Hapus Data Sukses!!!"

@@ -98,13 +98,6 @@
                                 <div data-i18n="Basic">Pembayaran</div>
                             </a>
                         </li>
-
-                        <li class="menu-item  {{ Request::is('admin/laporan*') ? 'active' : '' }}">
-                            <a href="/admin/laporan" class="menu-link" style="color:black">
-                                <i class='menu-icon tf-icons bx bxs-report'></i>
-                                <div data-i18n="Basic">Laporan</div>
-                            </a>
-                        </li>
                         <li class="menu-item  {{ Request::is('admin/tarif*') ? 'active' : '' }}">
                             <a href="/admin/tarif" class="menu-link" style="color:black">
                                 <i class='bx bxs-dollar-circle'></i>
